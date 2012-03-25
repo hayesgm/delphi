@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export PATH=$PATH:/usr/local/bin/
+/usr/local/bin/mocha --compilers coffee:coffee-script --require should
