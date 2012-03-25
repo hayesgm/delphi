@@ -1,6 +1,6 @@
 {
     "name": "delphi"
-    "description": "Get your daily horoscope with Delphi",
+    "description": "Get your daily horoscope with Delphi"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
