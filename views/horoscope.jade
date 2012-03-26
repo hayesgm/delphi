@@ -1,3 +1,6 @@
 .page-header
-  h1= horoscope.title
-.content!=horoscope.body
+	h1= horoscope.title
+.content!=horoscope.horoscope()
+ul.tags
+	for tag in horoscope.tags
+		li= tag

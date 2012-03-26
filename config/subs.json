@@ -1,0 +1,9 @@
+{
+	"subs":
+		[
+			{
+				"exp": "(his|her)",
+				"replace": "gender-genitive"
+			}
+		]
+}

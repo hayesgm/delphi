@@ -20,11 +20,13 @@ module.exports =
 		res.render 'add_horoscope', title: 'Write New Horoscope'
 		
 	addHoroscope: (req, res) ->
+		req.body.horoscope.tags = req.body.horoscope.tags.split(',')
 		new Horoscope(req.body.horoscope).save ->
 			res.redirect '/horoscopes'
 	
 	viewHoroscope: (req, res) ->
 		Horoscope.findById req.params.id, (err, horoscope) ->
+			
 			switch req.params.format
 				when 'json'
 					res.json horoscope

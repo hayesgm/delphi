@@ -1,15 +1,19 @@
 form(method="post", action="/horoscopes/new")
-  fieldset
-    legend=title
-    .clearfix
-      label(for="title") Title
-      .input
-        input.xlarge#title(type="text", name="horoscope[title]")
-    .clearfix
-      label(for="horoscope") Horoscope
-      .input
-        textarea#horoscope.xxlarge(name="horoscope[body]",rows="3")
-    .actions
-      input.btn.primary(type="submit", value="Publish!")
-      |   
-      a.btn(href="/") Cancel
+	fieldset
+		legend=title
+		.clearfix
+			label(for="title") Title
+			.input
+				input.xlarge#title(type="text", name="horoscope[title]")
+		.clearfix
+			label(for="horoscope") Horoscope
+			.input
+				textarea#horoscope.xxlarge(name="horoscope[body]",rows="3")
+		.clearfix
+			label(for="tags") Horoscope
+			.input
+				input.xlarge#tags(type="text", name="horoscope[tags]")
+		.actions
+			input.btn.primary(type="submit", value="Publish!")
+			|   
+			a.btn(href="/") Cancel
