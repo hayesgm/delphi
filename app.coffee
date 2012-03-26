@@ -25,7 +25,6 @@ app.configure "production", ->
 console.log process.env.NODE_ENV
 
 config = JSON.parse( fs.readFileSync "./config/database.json", "utf8" )[process.env.NODE_ENV]
-console.log "mongodb://#{config.username}:#{config.password}@#{config.host}:#{config.port}/#{config.database}"
 mongoose.connect "mongodb://#{config.username}:#{config.password}@#{config.host}:#{config.port}/#{config.database}"
 
 # Routes	
