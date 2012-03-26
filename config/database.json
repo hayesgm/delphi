@@ -1,0 +1,16 @@
+{
+	"development": {
+		"host": "localhost",
+		"port": 27017,
+		"database": "delphi",
+		"username": "delphi",
+		"password": "delphi"
+	},
+	"production": {
+		"host": "ds031657.mongolab.com",
+		"port": "31657",
+		"database": "heroku_app3478556",
+		"username": "delphi",
+		"password": "fsfDsr3F3sf21sdxVcXr989feSFffew"
+	}
+}

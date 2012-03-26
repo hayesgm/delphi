@@ -1,5 +1,6 @@
 express = require("express")
 mongoose = require("mongoose")
+fs = require("fs")
 routes = require("./routes/routes")
 
 app = module.exports = express.createServer()
@@ -12,16 +13,22 @@ app.configure ->
 	app.use express.static(__dirname + "/public")
 
 app.configure "development", ->
-	mongoose.connect 'mongodb://localhost/coffeepress-dev'
 	app.use express.errorHandler(
 		dumpExceptions: true
 		showStack: true
 	)
 
 app.configure "production", ->
-	mongoose.connect 'mongodb://localhost/coffeepress-prod'
 	app.use express.errorHandler()
 
+# Configure App
+console.log process.env.NODE_ENV
+
+config = JSON.parse( fs.readFileSync "./config/database.json", "utf8" )[process.env.NODE_ENV]
+console.log [ config.host, config.database, config.port, { username: config.username, password: config.password } ]
+mongoose.connect config.host, config.database, config.port, { username: config.username, password: config.password }
+
+# Routes	
 app.get '/', routes.index
 app.get '/post/new', routes.newPost
 app.post '/post/new', routes.addPost
