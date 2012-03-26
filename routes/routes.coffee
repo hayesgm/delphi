@@ -1,20 +1,34 @@
-Post = require '../models/Post'
+Horoscope = require '../models/Horoscope'
 
+# TODO: 
 module.exports =
+	home: (req, res) ->
+		res.render 'home',
+			title: 'Delphi'
+			
 	index: (req, res) ->
-		Post.find {}, (err, posts) ->
-			res.render 'index',
-				title: 'My Coffeepress Blog'
-				posts: posts
+		Horoscope.find {}, (err, horoscopes) ->
+			switch req.params.format
+				when 'json'
+					res.json horoscopes
+				else
+					res.render 'index',
+						title: 'Delphi | Horoscopes'
+						horoscopes: horoscopes
 	
-	newPost: (req, res) ->
-		res.render 'add_post', title: 'Write New Post'
+	newHoroscope: (req, res) ->
+		res.render 'add_horoscope', title: 'Write New Horoscope'
 		
-	addPost: (req, res) ->
-		new Post(req.body.post).save ->
-			res.redirect '/'
+	addHoroscope: (req, res) ->
+		new Horoscope(req.body.horoscope).save ->
+			res.redirect '/horoscopes'
 	
-	viewPost: (req, res) ->
-		Post.findById req.params.id, (err, post) ->
-			res.render 'post', post: post, title: post.title
+	viewHoroscope: (req, res) ->
+		Horoscope.findById req.params.id, (err, horoscope) ->
+			switch req.params.format
+				when 'json'
+					res.json horoscope
+				else
+					res.render 'horoscope', horoscope: horoscope, title: horoscope.title
+					
 	

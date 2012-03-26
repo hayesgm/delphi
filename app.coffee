@@ -28,10 +28,11 @@ config = JSON.parse( fs.readFileSync "./config/database.json", "utf8" )[process.
 mongoose.connect "mongodb://#{config.username}:#{config.password}@#{config.host}:#{config.port}/#{config.database}"
 
 # Routes	
-app.get '/', routes.index
-app.get '/post/new', routes.newPost
-app.post '/post/new', routes.addPost
-app.get '/post/:id', routes.viewPost
+app.get '/', routes.home
+app.get '/horoscopes.:format?', routes.index
+app.get '/horoscopes/new', routes.newHoroscope
+app.post '/horoscopes/new', routes.addHoroscope
+app.get '/horoscopes/:id.:format?', routes.viewHoroscope
 
 app.listen process.env.PORT || 3000
 console.log "Express server listening on port %d in %s mode", app.address().port, app.settings.env
